@@ -10,6 +10,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: './bookmarks-go'
     steps:
     - uses: actions/checkout@v4
 
