@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - bookmarks-boot/**
+      - .github/workflows/bookmarks-boot.yml
     branches:
       - '**'
 jobs:

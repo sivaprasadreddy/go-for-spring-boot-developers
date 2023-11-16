@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - bookmarks-go/**
+      - .github/workflows/bookmarks-go.yml
     branches:
       - '**'
 
