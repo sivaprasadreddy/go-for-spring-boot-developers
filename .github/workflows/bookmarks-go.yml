@@ -1,0 +1,28 @@
+name: Bookmarks Go
+
+on:
+  push:
+    paths:
+      - bookmarks-go/**
+    branches:
+      - '**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Test
+      run: go test -v ./...
+
+    - name: Build
+      run: go build -v ./...
+
+    - name: Build Docker Image
+      run: docker build -t sivaprasadreddy/bookmarks-go .

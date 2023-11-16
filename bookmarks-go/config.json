@@ -1,0 +1,15 @@
+{
+  "environment": "dev",
+  "server_port": 8080,
+  "logging": {
+    "filename": "bookmarks.log",
+    "level": "debug"
+  },
+  "db": {
+    "host": "localhost",
+    "port": 15432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "postgres"
+  }
+}
