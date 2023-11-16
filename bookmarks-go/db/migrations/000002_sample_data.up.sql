@@ -1,11 +1,3 @@
-create table bookmarks
-(
-    id         bigserial primary key,
-    title      varchar   not null,
-    url        varchar   not null,
-    created_at timestamp
-);
-
 insert into bookmarks(url, title, created_at) values
 ('https://linuxize.com/post/how-to-remove-docker-images-containers-volumes-and-networks/','How To Remove Docker Containers, Images, Volumes, and Networks',CURRENT_TIMESTAMP),
 ('https://reflectoring.io/unit-testing-spring-boot/','All You Need To Know About Unit Testing with Spring Boot',CURRENT_TIMESTAMP),

@@ -6,7 +6,6 @@ import (
 	"github.com/testcontainers/testcontainers-go/modules/postgres"
 	"github.com/testcontainers/testcontainers-go/wait"
 	"log"
-	"path/filepath"
 	"time"
 )
 
@@ -26,14 +25,12 @@ type PostgresContainer struct {
 	Password  string
 }
 
-// SetupPostgres creates an instance of the postgres container type
 func SetupPostgres(ctx context.Context) (*PostgresContainer, error) {
 	container, err := postgres.RunContainer(ctx,
 		testcontainers.WithImage(postgresImage),
 		postgres.WithDatabase(postgresDbName),
 		postgres.WithUsername(postgresUserName),
 		postgres.WithPassword(postgresPassword),
-		postgres.WithInitScripts(filepath.Join("testsupport", "test-schema.sql")),
 		testcontainers.WithWaitStrategy(wait.ForLog("database system is ready to accept connections").WithOccurrence(2).WithStartupTimeout(5*time.Second)),
 	)
 	if err != nil {
