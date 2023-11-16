@@ -20,7 +20,8 @@ jobs:
     - name: Set up Go
       uses: actions/setup-go@v4
       with:
-        go-version: '1.20'
+        go-version-file: './bookmarks-go/go.mod'
+        cache-dependency-path: "./bookmarks-go/go.sum"
 
     - name: Test
       run: go test -v ./...
