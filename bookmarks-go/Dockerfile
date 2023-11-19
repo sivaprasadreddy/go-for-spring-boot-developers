@@ -1,4 +1,4 @@
-FROM golang:1.20-buster as builder
+FROM golang:1.21-buster as builder
 # Create and change to the app directory.
 WORKDIR /app
 # Copy go.mod and if present go.sum.

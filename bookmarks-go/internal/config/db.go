@@ -1,7 +1,9 @@
 package config
 
 import (
+	"context"
 	"fmt"
+	"github.com/jackc/pgx/v5"
 	"github.com/sivaprasadreddy/bookmarks/db"
 
 	"gorm.io/driver/postgres"
@@ -12,6 +14,17 @@ import (
 	_ "github.com/golang-migrate/migrate/v4/database/postgres"
 	"github.com/golang-migrate/migrate/v4/source/iofs"
 )
+
+func GetDb(config AppConfig, logger *Logger) *pgx.Conn {
+	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",
+		config.Db.Host, config.Db.Port, config.Db.UserName, config.Db.Password, config.Db.Database)
+	conn, err := pgx.Connect(context.Background(), connStr)
+	if err != nil {
+		logger.Fatal(err)
+	}
+	applyDbMigrations(config, logger)
+	return conn
+}
 
 func GetGormDb(config AppConfig, logger *Logger) *gorm.DB {
 	connStr := fmt.Sprintf("host=%s port=%d user=%s password=%s dbname=%s sslmode=disable",

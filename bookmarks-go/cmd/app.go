@@ -24,9 +24,14 @@ type App struct {
 
 func NewApp(cfg config.AppConfig) *App {
 	logger := config.NewLogger(cfg)
-	gormDb := config.GetGormDb(cfg, logger)
+	// Using pgx driver
+	db := config.GetDb(cfg, logger)
+	repo := domain.NewBookmarkRepository(db, logger)
 
-	repo := domain.NewBookmarkRepository(gormDb, logger)
+	// Using GORM
+	//gormDb := config.GetGormDb(cfg, logger)
+	//repo := domain.NewGormBookmarkRepository(gormDb, logger)
+
 	bookmarkController := api.NewBookmarkController(repo, logger)
 
 	router := gin.Default()

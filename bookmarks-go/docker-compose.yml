@@ -18,7 +18,7 @@ services:
 
 
   bookmarks-go:
-    build: ./bookmarks-go
+    build: .
     ports:
       - "18080:8080"
     restart: unless-stopped
